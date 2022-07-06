@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            padding: 15px;
+            font-family: cursive;
+            text-align: center;
+            border: 8px solid black;
+            margin: 20px 300px;
+            border-radius: 25px;
+            color: rgb(14, 88, 88);
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: center;
+            margin: 0px 70px;
+            font-size: 80px;
+            background-color: lightgray;
+            border: none;
+        }
+
+        .container2 div {
+            padding: 5px 100px;
+            color: orange;
+            font-size: 80px;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        .selections {
+            display: flex;
+            justify-content: center;
+        }
+
+        .selections button {
+            margin: 0px 70px;
+            font-size: 100px;
+            background-color: lightgray;
+            border: none;
+        }
+
+        .selections :hover {
+            transform: scale(1.3);
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+
+        .results {
+            display: flex;
+            justify-content: center;
+        }
+
+        .results div {
+            padding: 40px 80px;
+            color: orange;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .results span {
+            color: gray;
+        }
+
+        .resulttext {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 40px;
+            font-family: cursive;
+            color: rgb(145, 32, 145);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rock Paper Scissors Game</h1>
+
+    <div class="selections">
+        <button class="selections" onclick="makeSelection(this.value)" value="Rock">✊</button>
+        <button class="selections" onclick="makeSelection(this.value)" value="Paper">🖐</button>
+        <button class="selections" onclick="makeSelection(this.value)" value="Scissors">✌️</button>
+    </div>
+
+    <div class="results">
+        <div>
+            You :
+            <span class="result-score" id="score-user">0</span>
+        </div>
+
+        <div>
+            Computer :
+            <span class="result-score" id="score-comp">0</span>
+        </div>
+
+    </div>
+    <div class="container2">
+        <div class="results-selection winner" id="user"></div>
+        <div class="results-selection" id="computer"></div>
+    </div>
+
+    <div class="resulttext" id="result-text">
+
+    </div>
+
+</body>
+<script>
+
+    function randomselect() {
+        let num = Math.floor(Math.random() * 3);
+        return num
+    }
+
+    function makeSelection(selectName) {
+        let userdisp = document.getElementById("user")
+        let compdisp = document.getElementById("computer")
+
+        let scoreuser = document.getElementById("score-user")
+        let scorecomp = document.getElementById("score-comp")
+
+        let result = document.getElementById("result-text")
+
+        let computerselect = randomselect()
+
+        if (computerselect == 0) {
+            computerselect = "Rock"
+        }
+        else if (computerselect == 1) {
+            computerselect = "Paper"
+        }
+        else {
+            computerselect = "Scissors"
+        }
+
+        if (selectName == "Rock" && computerselect == "Rock") {
+            userdisp.innerHTML = "✊"
+            compdisp.innerHTML = "✊"
+            result.innerHTML = "Draw !"
+        }
+
+        if (selectName == "Rock" && computerselect == "Paper") {
+            userdisp.innerHTML = "✊"
+            compdisp.innerHTML = "🖐"
+            scorecomp.innerHTML++
+            result.innerHTML = "Paper beats Rock !"
+        }
+
+        if (selectName == "Rock" && computerselect == "Scissors") {
+            userdisp.innerHTML = "✊"
+            compdisp.innerHTML = "✌️"
+            scoreuser.innerHTML++
+            result.innerHTML = "Rock beats Scissors !"
+        }
+
+        if (selectName == "Paper" && computerselect == "Rock") {
+            userdisp.innerHTML = "🖐"
+            compdisp.innerHTML = "✊"
+            scoreuser.innerHTML++
+            result.innerHTML = "Paper beats Rock !"
+        }
+
+        if (selectName == "Paper" && computerselect == "Paper") {
+            userdisp.innerHTML = "🖐"
+            compdisp.innerHTML = "🖐"
+            result.innerHTML = "Draw !"
+        }
+
+        if (selectName == "Paper" && computerselect == "Scissors") {
+            userdisp.innerHTML = "🖐"
+            compdisp.innerHTML = "✌️"
+            scorecomp.innerHTML++
+            result.innerHTML = "Scissors beats Paper !"
+        }
+
+        if (selectName == "Scissors" && computerselect == "Rock") {
+            userdisp.innerHTML = "✌️"
+            compdisp.innerHTML = "✊"
+            scorecomp.innerHTML++
+            result.innerHTML = "Rock beats Scissors !"
+        }
+
+        if (selectName == "Scissors" && computerselect == "Paper") {
+            userdisp.innerHTML = "✌️"
+            compdisp.innerHTML = "🖐"
+            scoreuser.innerHTML++
+            result.innerHTML = "Scissors beats Paper !"
+        }
+
+        if (selectName == "Scissors" && computerselect == "Scissors") {
+            userdisp.innerHTML = "✌️"
+            compdisp.innerHTML = "✌️"
+            result.innerHTML = "Draw !"
+        }
+
+        if (scoreuser.innerHTML == '10') {
+            alert("You Win !!")
+        }
+        if (scorecomp.innerHTML == '10') {
+            alert("You Lose !!")
+        }
+
+    }
+
+</script>
+
+</html>
